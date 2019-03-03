@@ -68,13 +68,13 @@ void TcpReciver::ReadClient()
 void TcpReciver::commandReboot()
 {
     QProcess *process = new QProcess();
-    process->start("reboot");
+    process->start("shutdown -r");
 }
 
 void TcpReciver::commandShutdown()
 {
     QProcess *process = new QProcess();
-    process->start("shutdown -h now");
+    process->start("shutdown -s");
 }
 
 QString TcpReciver::checkName()

@@ -25,8 +25,6 @@ private:
     QTcpSocket *m_client;
     QUdpSocket *m_udp;
     quint16 m_nextBlockSize;
-    quint64 m_processId;
-    bool chromiumStarted = false;
 
 signals:
 
@@ -37,8 +35,6 @@ public slots:
     void ReadClient();
     void commandReboot();
     void commandShutdown();
-    void chromiumStart();
-    void chromiumStop();
     QString checkName();
 };
 

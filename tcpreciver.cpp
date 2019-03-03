@@ -61,12 +61,6 @@ void TcpReciver::ReadClient()
             commandReboot();
         else if (command == "Shutdown")
             commandShutdown();
-        else if (command == "chromium") {
-            if (!chromiumStarted)
-                chromiumStart();
-            else
-                chromiumStop();
-        }
         m_nextBlockSize = 0;
     }
 }
@@ -81,22 +75,6 @@ void TcpReciver::commandShutdown()
 {
     QProcess *process = new QProcess();
     process->start("shutdown -h now");
-}
-
-void TcpReciver::chromiumStart()
-{
-    QProcess *process = new QProcess();
-    process->start("sudo -u " + checkName() + " -H env DISPLAY=:0.0 chromium");
-    m_processId = process->processId();
-    chromiumStarted = true;
-}
-
-void TcpReciver::chromiumStop()
-{
-    m_processId++;
-    QProcess *process = new QProcess();
-    process->start("kill " + QString::number (m_processId));
-    chromiumStarted = false;
 }
 
 QString TcpReciver::checkName()
